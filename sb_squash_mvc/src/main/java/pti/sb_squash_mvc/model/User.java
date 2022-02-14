@@ -5,8 +5,8 @@ public class User {
     private int id;
     private String name;
     private String pwd;
-    private String role;
-    private int entered;
+    private Roles role;
+    private boolean entered;
 
     public int getId() {
         return id;
@@ -32,19 +32,21 @@ public class User {
         this.pwd = pwd;
     }
 
-    public String getRole() {
-        return role;
-    }
+    public Roles getRole() {
+		return role;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public void setRole(Roles role) {
+		this.role = role;
+	}
 
-    public int getEntered() {
-        return entered;
-    }
+	public boolean isEntered() {
+		return entered;
+	}
 
-    public void setEntered(int entered) {
-        this.entered = entered;
-    }
+	public void setEntered(boolean entered) {
+		this.entered = entered;
+	}
+
+	
 }
