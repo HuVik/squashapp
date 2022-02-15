@@ -1,13 +1,37 @@
 package pti.sb_squash_mvc.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="matches")
 public class Match {
 
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	@Column(name="hplayerid")
     private int hPlayerId;
+	
+	@Column(name="aplayerid")
     private int aPlayerId;
+	
+	@Column(name="hplayerpoints")
     private int hPlayerPoints;
+	
+	@Column(name="aplayerpoints")
     private int aPlayerPoints;
+	
+	@Column(name="locationid")
     private int locationId;
+	
+	@Column(name="date")
     private int date;
 
     public int getId() {

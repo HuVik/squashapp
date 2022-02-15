@@ -1,9 +1,25 @@
 package pti.sb_squash_mvc.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="locations")
 public class Location {
 
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	@Column(name ="address")
     private String address;
+	
+	@Column(name="rentperhour")
     private int rentPerHour;
 
     public int getId() {

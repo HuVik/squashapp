@@ -1,11 +1,32 @@
 package pti.sb_squash_mvc.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="users")
 public class User {
 
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	@Column(name="name")
     private String name;
+	
+	@Column(name="pwd")
     private String pwd;
+	
+	@Column(name="role")
     private Roles role;
+	
+	@Column(name="entered")
     private boolean entered;
 
     public int getId() {
