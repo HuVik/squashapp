@@ -9,7 +9,6 @@
 		
 		
 		<mapping class="pti.sb_squash_mvc.model.User" />
-		<mapping class="pti.sb_squash_mvc.model.Admin" />
 		<mapping class="pti.sb_squash_mvc.model.Location" />
 		<mapping class="pti.sb_squash_mvc.model.Match" />
 	

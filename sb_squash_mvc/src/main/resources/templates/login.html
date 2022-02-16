@@ -13,13 +13,15 @@
 		</div>
 
 		<div id="loginform">
-		  <form>
+		  <form action="welcomepage" method="post">
 			    <input type="text" name="username" placeholder="Adja meg a felhasználónevét!">
 			    <br />
 			    <input type="password" name="userpwd" placeholder="Adja meg a jelszavát!">
 			    <br />
 			    <input type="submit">
 		  </form>
+		  <p th:text=${denied}></p>
+		  <p th:text=${error}></p>
 		</div>
 
 </body>
