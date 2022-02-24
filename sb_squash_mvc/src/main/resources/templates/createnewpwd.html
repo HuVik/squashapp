@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form action="showchangepassword" method="post">
+		<input type = "text" name = "username" placeholder = "Adja meg a nevét!">
+		<p>Adja meg az új jelszavát!</p>
+		<input type = "password" name="userspassword" placeholder = "Adja meg új jelszavát!">
+		<br />
+		<p>Erősítse meg a jelszavát!</p>
+		<input type = "password" name="newuserspassword" placeholder = "Erősítse meg jelszavát!">
+		<br />
+		<input type = "submit">
+		<br />
+		<p th:text= ${success}></p>
+		<p th:text=${warning}></p>
+		<p th:text=${error}></p>
+	</form>
+
+</body>
+</html>

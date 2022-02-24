@@ -3,3 +3,30 @@
 #loginbody{
 	background-color: gray;
 }
+
+#loginheader{
+	margin-left:180px;
+}
+
+#plogin{
+	padding-left: 40px;
+}
+
+#loginform{
+	width: 350px;
+	border:1px solid black;
+	border-radius: 30px;
+	margin-left:100px;
+}
+
+#loginform input{
+	width: 200px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+#submitlogin{
+	padding-left: 20px;
+}
+
+

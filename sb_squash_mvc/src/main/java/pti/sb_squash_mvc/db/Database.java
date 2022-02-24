@@ -11,6 +11,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
 
 public class Database {
@@ -39,7 +40,7 @@ public class Database {
     }
     
     
-    public User getUserByName(String userName, String userPwd) {
+    public User getUserByNameAndPwd(String userName, String userPwd) {
     	User user = null;
     	
     	Session session = sessionFactory.openSession();
@@ -60,6 +61,30 @@ public class Database {
 		return user;
 	}
 
+    
+    public void saveUser(User user) {
+    	
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	session.save(user);
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    	
+    	
+    }
+    
+    public void updateUser(User user) {
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	session.update(user);
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    }
+    
+
+    
 
 
     public void close(){

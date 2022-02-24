@@ -2,10 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/admin.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>Üdvözöljük kedves Admin!</h1>
+	
+	<div id="regform">
+		<form action = "/regbyadmin" method = "post">
+			<input type = "text" name = "username" placeholder="Adja meg az új felhasználó nevét!">
+			<br />
+			<label>Adja meg a jelszót:</label>
+			<input type = "password" name = "userpwd">
+			<br />
+			<input type = "text" name = "role" placeholder="Adja meg a jogosultságot!">
+			<br />
+			<input type = "submit">
+		</form>
+	</div>
 
 </body>
 </html>

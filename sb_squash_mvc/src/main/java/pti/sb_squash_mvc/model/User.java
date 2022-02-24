@@ -31,6 +31,10 @@ public class User {
 	
 	@Column(name="entered")
     private boolean entered;
+	
+	
+	@Column(name="pieceofentry")
+	private int pieceOfEntry;
 
     public int getId() {
         return id;
@@ -71,6 +75,16 @@ public class User {
 	public void setEntered(boolean entered) {
 		this.entered = entered;
 	}
+
+	public int getPieceOfEntry() {
+		return pieceOfEntry;
+	}
+
+	public void setPieceOfEntry(int pieceOfEntry) {
+		this.pieceOfEntry = pieceOfEntry;
+	}
+	
+	
 
 	
 }

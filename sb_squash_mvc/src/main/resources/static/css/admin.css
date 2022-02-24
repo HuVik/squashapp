@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#regform{
+	border:1px solid black;
+	border-radius: 30px;
+}
+
+#regform input{
+	width:250px;
+}
+

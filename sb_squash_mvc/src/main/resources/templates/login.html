@@ -9,7 +9,7 @@
 
 		<div id="loginheader">
 			  <p>Üdvözli a Squash applikáció!</p>
-			  <p>Jelentkezzen be!</p>
+			  <p id= "plogin">Jelentkezzen be!</p>
 		</div>
 
 		<div id="loginform">
@@ -18,11 +18,14 @@
 			    <br />
 			    <input type="password" name="userpwd" placeholder="Adja meg a jelszavát!">
 			    <br />
-			    <input type="submit">
+			    <input id="submitlogin" type="submit">
 		  </form>
 		  <p th:text=${denied}></p>
 		  <p th:text=${error}></p>
 		</div>
+		<br />
+		
+		
 
 </body>
 </html>
