@@ -95,8 +95,8 @@ public class AppController {
 			
 			if((!userName.isEmpty()) && (!usersPwd.isEmpty()) && (!newUsersPwd.isEmpty())) {
 				User user = db.getUserByNameAndPwd(userName, usersPwd);
-				if(!usersPwd.equals(newUsersPwd)) {
-					//save new password
+				if((user != null) && (!usersPwd.equals(newUsersPwd)) && (!user.getPwd().equals(newUsersPwd))) {
+					//save user width his/her new password
 					db.updateUser(user);
 					model.addAttribute("success", "A jelszó sikeresen módosítva!");
 				}else {
