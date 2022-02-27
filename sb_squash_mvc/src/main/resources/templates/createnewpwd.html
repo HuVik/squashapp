@@ -2,24 +2,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/createpwd.css" />
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>Megváltoztathatja jelszavát!</h1>
+	<br />
+	<div id="changepwd">
+		<form id="changepwdform" action="showchangepassword" method="post">
+			<label>Adja meg a nevét:</label>
+			<input type = "text" name = "username" placeholder = "Adja meg a nevét!">
+			<br />
+			
+			<label>Adja meg a régi jelszavát:</label>
+			<input type="password" name ="oldpwd" placholder = "Adja meg régi jelszavát!">
+			
+			<label>Adja meg az új jelszavát:</label>
+			<input type = "password" name="userspassword" placeholder = "Adja meg új jelszavát!">
+			<br />
+			
+			<label>Erősítse meg a jelszavát!</label>
+			<input type = "password" name="newuserspassword" placeholder = "Erősítse meg jelszavát!">
+			<br />
+			
+			<input type = "submit">
+			<br />
+			<p th:text= ${success}></p>
+			<p th:text=${warning}></p>
+			<p th:text=${error}></p>
+			<p th:text=${nofound}></p>
+		</form>
+	</div>
 	
-	<form action="showchangepassword" method="post">
-		<input type = "text" name = "username" placeholder = "Adja meg a nevét!">
-		<p>Adja meg az új jelszavát!</p>
-		<input type = "password" name="userspassword" placeholder = "Adja meg új jelszavát!">
-		<br />
-		<p>Erősítse meg a jelszavát!</p>
-		<input type = "password" name="newuserspassword" placeholder = "Erősítse meg jelszavát!">
-		<br />
-		<input type = "submit">
-		<br />
-		<p th:text= ${success}></p>
-		<p th:text=${warning}></p>
-		<p th:text=${error}></p>
-	</form>
 
 </body>
 </html>
