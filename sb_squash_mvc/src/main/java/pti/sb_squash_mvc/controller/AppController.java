@@ -63,24 +63,23 @@ public class AppController {
 	@PostMapping("/regbyadmin")
 	public String regByAdmin(Model model, 
 			@RequestParam(name="username") String userName,
-			@RequestParam(name="userpwd") String pwd, 
 			@RequestParam(name="role") String role) {
 		
 		Database db = new Database();
+		String genPass = db.genPass();
 		User user = new User();
 		user.setName(userName);
-		user.setPwd(pwd);
+		user.setPwd(genPass);
 		if(role.equals("ADMIN")) {
 			user.setRole(Roles.ADMIN);
 		}else {
 			user.setRole(Roles.PLAYER);
+			model.addAttribute("success", "A felhasználó sikeresen regisztrálva!");
 		}
 		
 		user.setEntered(false);
 		user.setPieceOfEntry(0);
 		db.saveUser(user);
-	
-		
 		
 		return "admin";
 	}
