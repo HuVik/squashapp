@@ -86,7 +86,7 @@ public class AdminController {
 				if((!locAddress.isEmpty()) && (rentPerHour > 0)) {
 					Location location = db.getLocationByAddress(locAddress);
 					
-					if(location != null) {
+					if(location == null) {
 						model.addAttribute("alert", "A regisztrálni kívánt helyszín már létezik az adatbázisban!");
 					}else {
 						location.setAddress(locAddress);
