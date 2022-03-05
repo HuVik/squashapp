@@ -123,7 +123,7 @@ public class Database {
     	
     }
     
-    public void saveMacth(Match match) {
+    public void saveMatch(Match match) {
     	
     	Session session = sessionFactory.openSession();
     	session.beginTransaction();

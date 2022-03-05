@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pti.sb_squash_mvc.db.Database;
 import pti.sb_squash_mvc.model.Location;
+import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
 
@@ -99,6 +100,41 @@ public class AdminController {
 					model.addAttribute("fail", "A mezők kitöltése szükséges az adatrögzítéshez!");
 				}
 				
+			return "admin";
+		}
+		
+		@PostMapping("/regmatchbyadmin")
+		public String regMatchByAdmin(Model model, 
+				@RequestParam(name ="hplayerid") int hPlayerId,
+				@RequestParam(name ="aplayerid") int aPlayerId,
+				@RequestParam(name="locationid") int locatinId) {
+			
+			Database db = new Database();
+			
+			if((hPlayerId >0) && (aPlayerId > 0) && (locatinId > 0)) {
+				//if I want to define which data is not exists in database then I need to check them
+				User hPlayer = db.getUserById(hPlayerId);
+				User aPlayer = db.getUserById(aPlayerId);
+				Location location = db.getLocationById(locatinId);
+				if((hPlayer != null) && (aPlayer != null) && (location != null)) {
+					Match match = new Match();
+					match.setaPlayerId(aPlayerId);
+					match.setaPlayerPoints(0);
+					match.sethPlayerId(hPlayerId);
+					match.sethPlayerPoints(0);
+					match.setLocationId(locatinId);
+					match.setDate(20220305);
+					db.saveMatch(match);
+					model.addAttribute("success", "A mérkőzés sikeresen rögzítve");
+				}else {
+					model.addAttribute("error", "Adatok hiányoznak az adatbázisból!");
+				}
+				
+			}else {
+				model.addAttribute("warning", "Mezők kitöltése kötelező!");
+			}
+			
+			
 			return "admin";
 		}
 
