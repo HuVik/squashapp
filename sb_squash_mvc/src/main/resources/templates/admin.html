@@ -20,6 +20,20 @@
 			<p th:text="${success}"></p>
 		</form>
 	</div>
+	
+	<div id="reglocation">
+		<form action = "/reglocationbyadmin" method = "post">
+			<label>Adja meg a helyszín címét:</label>
+			<input type = "text" name = "locaddress" placeholder="Helyszín...">
+			<br />
+			<label>Adja meg a bérleti díjat:</label>
+			<input type = "text" name = "rentperhour" placeholder="Bérletidíj...">
+			<br />
+			<input type = "submit">
+			<p th:text=${done}></p>
+			<p th:text=${fail}></p>
+		</form>
+	</div>
 
 </body>
 </html>

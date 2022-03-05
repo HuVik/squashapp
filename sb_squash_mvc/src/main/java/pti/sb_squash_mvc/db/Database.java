@@ -13,6 +13,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import pti.sb_squash_mvc.model.Location;
+import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
 
@@ -73,6 +75,28 @@ public class Database {
     	session.getTransaction().commit();
     	session.close();
     	
+    	
+    }
+    
+    public void saveLocation(Location location) {
+    	
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	session.save(location);
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    	
+    }
+    
+    public void saveMacth(Match match) {
+    	
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	session.save(match);
+    	
+    	session.getTransaction().commit();
+    	session.close();
     	
     }
     
