@@ -76,7 +76,6 @@ public class AdminController {
 		return "admin";
 	}
 	
-	//helyszín rögzítésnél tartok
 		@PostMapping("/reglocationbyadmin")
 		public String regLocationByAdmin(Model model,
 				@RequestParam(name = "locaddress") String locAddress,
@@ -85,11 +84,17 @@ public class AdminController {
 				Database db = new Database();
 				
 				if((!locAddress.isEmpty()) && (rentPerHour > 0)) {
-					Location location = new Location();
-					location.setAddress(locAddress);
-					location.setRentPerHour(rentPerHour);
-					db.saveLocation(location);
-					model.addAttribute("done", "Helyszín sikeresen regisztrálva!");
+					Location location = db.getLocationByAddress(locAddress);
+					
+					if(location != null) {
+						model.addAttribute("alert", "A regisztrálni kívánt helyszín már létezik az adatbázisban!");
+					}else {
+						location.setAddress(locAddress);
+						location.setRentPerHour(rentPerHour);
+						db.saveLocation(location);
+						model.addAttribute("done", "Helyszín sikeresen regisztrálva!");
+					}
+					
 				}else {
 					model.addAttribute("fail", "A mezők kitöltése szükséges az adatrögzítéshez!");
 				}

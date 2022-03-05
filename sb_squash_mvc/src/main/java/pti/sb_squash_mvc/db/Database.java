@@ -43,6 +43,40 @@ public class Database {
         return user;
     }
     
+    public Location getLocationById(int locationId) {
+    	
+    	Location location = null;
+    	
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	location = session.get(Location.class, locationId);
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    	
+    	return location;
+    }
+    
+    public Location getLocationByAddress(String address) {
+    	
+    	Location location = null;
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	
+    	Query selectQuery = session.createQuery("SELECT l FROM Location l WHERE l.address=:address", Location.class);
+    	selectQuery.setParameter("address", address);
+    	List<Location> locations = selectQuery.getResultList();
+    	
+    	if(!locations.isEmpty()) {
+    		location = locations.get(0);
+    	}
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    	
+    	return location;
+    }
+    
     
     public User getUserByNameAndPwd(String userName, String userPwd) {
     	User user = null;
