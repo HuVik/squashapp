@@ -7,23 +7,28 @@
 </head>
 <body id="loginbody">
 
-		<div id="loginheader">
-			  <p>Üdvözli a Squash applikáció!</p>
-			  <p id= "plogin">Jelentkezzen be!</p>
-		</div>
-
+		<img alt="squash" src="/img/squash.jpg">
+		
+		
 		<div id="loginform">
+		<img id="loginicon" alt="login" src="/img/login.png">
 		  <form action="welcomepage" method="post">
-			    <input type="text" name="username" placeholder="Adja meg a felhasználónevét!">
+				<h2>Üdvözli a Squash applikáció!</h2>
+				<h3>Jelentkezzen be!</h3>
+				<p>Adja meg a felhasználónevét:</p>
+			    <input type="text" name="username" placeholder="Felhasználónév..">
 			    <br />
-			    <input type="password" name="userpwd" placeholder="Adja meg a jelszavát!">
+			    <p>Adja meg a jelszavát:</p>
+			    <input type="password" name="userpwd" placeholder="Jelszó...">
 			    <br />
-			    <input id="submitlogin" type="submit">
+			    <input type="submit">
 		  </form>
 		  <p th:text=${denied}></p>
 		  <p th:text=${error}></p>
 		</div>
-		<br />
+
+
+
 		
 		
 

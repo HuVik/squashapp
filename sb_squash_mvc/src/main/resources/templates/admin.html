@@ -10,6 +10,7 @@
 	
 	<div id="regform">
 		<form action = "/regbyadmin" method = "post">
+			<h2>Új felhasználó regisztrálása!</h2>
 			<label>Adja meg az új felhasználó nevét:</label>
 			<input type = "text" name = "username" placeholder="Felhasználónév...">
 			<br />
@@ -23,11 +24,30 @@
 	
 	<div id="reglocation">
 		<form action = "/reglocationbyadmin" method = "post">
+			<h2>Helyszín regisztrálása!</h2>
 			<label>Adja meg a helyszín címét:</label>
 			<input type = "text" name = "locaddress" placeholder="Helyszín...">
 			<br />
 			<label>Adja meg a bérleti díjat:</label>
 			<input type = "text" name = "rentperhour" placeholder="Bérletidíj...">
+			<br />
+			<input type = "submit">
+			<p th:text=${done}></p>
+			<p th:text=${fail}></p>
+		</form>
+	</div>
+	
+	<div id="regmatch">
+		<form action = "/regmatchbyadmin" method = "post">
+			<h2>Mérkőzés regisztrálása!</h2>
+			<label>Adja meg a hazai játékos azonosítóját:</label>
+			<input type = "text" name = "hplayerid" placeholder="Hazai játékos....">
+			<br />
+			<label>Adja meg a vendég játékos azonosítóját:</label>
+			<input type = "text" name = "aplayerid" placeholder="Vendég játékos...">
+			<br />
+			<label>Adja meg a mérkőzés helyszín azonosítóját:</label>
+			<input type = "text" name = "locationid" placeholder="Helyszín...">
 			<br />
 			<input type = "submit">
 			<p th:text=${done}></p>
