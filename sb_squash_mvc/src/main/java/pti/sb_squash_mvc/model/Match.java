@@ -1,5 +1,7 @@
 package pti.sb_squash_mvc.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +34,8 @@ public class Match {
     private int locationId;
 	
 	@Column(name="date")
-    private int date;
+    private LocalDate date;
+	
 
     public int getId() {
         return id;
@@ -82,11 +85,14 @@ public class Match {
         this.locationId = locationId;
     }
 
-    public int getDate() {
-        return date;
-    }
+	public LocalDate getDate() {
+		return date;
+	}
 
-    public void setDate(int date) {
-        this.date = date;
-    }
+	public void setDate() {
+		this.date.now();
+	}
+
+   
+    
 }

@@ -111,24 +111,31 @@ public class AdminController {
 			
 			Database db = new Database();
 			
-			if((hPlayerId >0) && (aPlayerId > 0) && (locatinId > 0)) {
+			if((hPlayerId > 0) && (aPlayerId > 0) && (locatinId > 0)) {
 				//if I want to define which data is not exists in database then I need to check them
 				User hPlayer = db.getUserById(hPlayerId);
 				User aPlayer = db.getUserById(aPlayerId);
 				Location location = db.getLocationById(locatinId);
-				if((hPlayer != null) && (aPlayer != null) && (location != null)) {
-					Match match = new Match();
-					match.setaPlayerId(aPlayerId);
-					match.setaPlayerPoints(0);
-					match.sethPlayerId(hPlayerId);
-					match.sethPlayerPoints(0);
-					match.setLocationId(locatinId);
-					match.setDate(20220305);
-					db.saveMatch(match);
-					model.addAttribute("success", "A mérkőzés sikeresen rögzítve");
-				}else {
-					model.addAttribute("error", "Adatok hiányoznak az adatbázisból!");
-				}
+					if(hPlayer == null) {
+						model.addAttribute("hplayernull", "A hazai játékos nem szerepel a rendzserben!");
+					}else if(aPlayer == null) {
+						model.addAttribute("aplayernull", "A vendég játékos nem szerepel a rendzserben!");
+					}
+					else if(location == null) {
+						model.addAttribute("locationisnull", "A helyszín nem szerepel a rendzserben!");
+					}
+					else {
+						Match match = new Match();
+						match.setaPlayerId(aPlayerId);
+						match.setaPlayerPoints(0);
+						match.sethPlayerId(hPlayerId);
+						match.sethPlayerPoints(0);
+						match.setLocationId(locatinId);
+						match.setDate();
+						db.saveMatch(match);
+						model.addAttribute("success", "A mérkőzés sikeresen rögzítve");
+						
+					}
 				
 			}else {
 				model.addAttribute("warning", "Mezők kitöltése kötelező!");
