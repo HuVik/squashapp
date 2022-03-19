@@ -28,9 +28,6 @@
 			<label>Adja meg a helyszín címét:</label>
 			<input type = "text" name = "locaddress" placeholder="Helyszín...">
 			<br />
-			<label>Adja meg a bérleti díjat:</label>
-			<input type = "text" name = "rentperhour" placeholder="Bérletidíj...">
-			<br />
 			<input type = "submit">
 			<p th:text=${done}></p>
 			<p th:text=${fail}></p>
@@ -57,6 +54,12 @@
 			<p th:text=${aplayernull}></p>
 			<p th:text=${locationisnull}></p>
 		</form>
+	</div>
+	
+	<div>
+		<select>
+			<option></option>
+		</select>
 	</div>
 
 </body>

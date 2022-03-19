@@ -2,12 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/user.css" >
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>Köszöntjük a játékost!</h1>
 	
+	<div id="datatable" >
+		<table>
+			<tr>
+				<th>Hazai játékos neve</th>
+				<th>Vendég játékos neve</th>
+				<th>Hazai játékos pontszáma</th>
+				<th>Hazai játékos pontszáma</th>
+				<th>Helyszín</th>
+				<th>Dátum</th>
+			</tr>
+			
+			<tr th:each="match : ${matches}" >
+				<td th:text="${match.hPlayer.name}"></td>
+				<td th:text="${match.aPlayer.name}"></td>
+				<td th:text="${match.hPlayerPoints}"></td>
+				<td th:text="${match.aPlayerPoints}"></td>
+				<td th:text="${match.location}"></td>
+				<td th:text="${match.date}"></td>
+			</tr>
+		
+		
+		</table>
 	
+	</div>
 
 </body>
 </html>

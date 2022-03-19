@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,11 +21,13 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
-	@Column(name="hplayerid")
-    private int hPlayerId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="homeplayerid")
+    private User hPlayer;
 	
-	@Column(name="aplayerid")
-    private int aPlayerId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="awayplayerid")
+    private User aPlayer;
 	
 	@Column(name="hplayerpoints")
     private int hPlayerPoints;
@@ -30,8 +35,9 @@ public class Match {
 	@Column(name="aplayerpoints")
     private int aPlayerPoints;
 	
-	@Column(name="locationid")
-    private int locationId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="locationid")
+    private Location location;
 	
 	@Column(name="date")
     private LocalDate date;
@@ -45,23 +51,31 @@ public class Match {
         this.id = id;
     }
 
-    public int gethPlayerId() {
-        return hPlayerId;
-    }
+   
 
-    public void sethPlayerId(int hPlayerId) {
-        this.hPlayerId = hPlayerId;
-    }
+   
 
-    public int getaPlayerId() {
-        return aPlayerId;
-    }
+	public User gethPlayer() {
+		return hPlayer;
+	}
 
-    public void setaPlayerId(int aPlayerId) {
-        this.aPlayerId = aPlayerId;
-    }
+	public void sethPlayer(User hPlayer) {
+		this.hPlayer = hPlayer;
+	}
 
-    public int gethPlayerPoints() {
+	public User getaPlayer() {
+		return aPlayer;
+	}
+
+	public void setaPlayer(User aPlayer) {
+		this.aPlayer = aPlayer;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public int gethPlayerPoints() {
         return hPlayerPoints;
     }
 
@@ -77,13 +91,15 @@ public class Match {
         this.aPlayerPoints = aPlayerPoints;
     }
 
-    public int getLocationId() {
-        return locationId;
-    }
+    
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 
 	public LocalDate getDate() {
 		return date;

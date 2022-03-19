@@ -20,7 +20,7 @@ public class Location {
     private String address;
 	
 	@Column(name="rentperhour")
-    private int rentPerHour;
+    private double rentPerHour;
 
     public int getId() {
         return id;
@@ -38,11 +38,18 @@ public class Location {
         this.address = address;
     }
 
-    public int getRentPerHour() {
+    public double getRentPerHour() {
         return rentPerHour;
     }
 
-    public void setRentPerHour(int rentPerHour) {
+    public void setRentPerHour(double rentPerHour) {
         this.rentPerHour = rentPerHour;
     }
+
+	@Override
+	public String toString() {
+		return address + "| bérleti díj: " + rentPerHour + " Ft";
+	}
+    
+    
 }

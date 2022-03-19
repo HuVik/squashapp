@@ -1,11 +1,16 @@
 package pti.sb_squash_mvc.controller;
 
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pti.sb_squash_mvc.db.Database;
+import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.User;
 
 @Controller
@@ -24,13 +29,8 @@ public class UserController {
 				User user = db.getUserByNameAndPwd(userName, oldPwd);
 				if(user != null) {
 					if(!user.getPwd().equals(newUsersPwd) && (!user.getPwd().equals(usersPwd))) {
-						//save user width his/her new password
-						user.setId(user.getId());
-						user.setName(userName);
+						//save user with his/her new password
 						user.setPwd(newUsersPwd);
-						user.setRole(user.getRole());
-						user.setEntered(user.isEntered());
-						user.setPieceOfEntry(user.getPieceOfEntry());
 						db.updateUser(user);
 						model.addAttribute("success", "A jelszó sikeresen módosítva!");
 					}else {
@@ -47,6 +47,25 @@ public class UserController {
 			
 		
 		return "createnewpwd";
+	}
+	
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!
+	@GetMapping("/showmatches")
+	public String showMacthes(Model model) {
+		
+		Database db = new Database();
+		
+		List<Match> matches = db.getAllMatch();
+		
+		
+		if(matches != null) {
+			
+			model.addAttribute("matches", matches);
+		}else {
+			model.addAttribute("error", "Nem létezik a rendszerben a kívánt mérkőzés!");
+		}
+		
+		return "user";
 	}
 
 }

@@ -15,7 +15,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import pti.sb_squash_mvc.model.Location;
 import pti.sb_squash_mvc.model.Match;
-import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
 
 public class Database {
@@ -98,6 +97,23 @@ public class Database {
     	session.close();
 		return user;
 	}
+    
+    public List<Match> getAllMatch() {
+    	
+    	Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query selectQuery = session.createQuery("SELECT m FROM Match m",Match.class);
+    	List<Match> matches = selectQuery.getResultList(); 
+    	
+    	
+    	
+        session.getTransaction().commit();
+        session.close();
+    	
+    	
+    	return matches;
+    }
 
     
     public void saveUser(User user) {

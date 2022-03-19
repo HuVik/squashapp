@@ -1,5 +1,8 @@
 package pti.sb_squash_mvc.controller;
 
+import java.io.IOException;
+
+import org.jdom2.JDOMException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +13,7 @@ import pti.sb_squash_mvc.model.Location;
 import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
+import pti.sb_squash_mvc.xmlparser.XmlParser;
 
 @Controller
 public class AdminController {
@@ -79,10 +83,10 @@ public class AdminController {
 	
 		@PostMapping("/reglocationbyadmin")
 		public String regLocationByAdmin(Model model,
-				@RequestParam(name = "locaddress") String locAddress,
-				@RequestParam(name="rentperhour") int rentPerHour) {
+				@RequestParam(name = "locaddress") String locAddress) throws JDOMException, IOException {
 			
 				Database db = new Database();
+				double rentPerHour = XmlParser.getRate();
 				
 				if((!locAddress.isEmpty()) && (rentPerHour > 0)) {
 					Location location = db.getLocationByAddress(locAddress);
@@ -112,7 +116,7 @@ public class AdminController {
 			Database db = new Database();
 			
 			if((hPlayerId > 0) && (aPlayerId > 0) && (locatinId > 0)) {
-				//if I want to define which data is not exists in database then I need to check them
+				//If I want to define which data is not exists in database then I need to check them.
 				User hPlayer = db.getUserById(hPlayerId);
 				User aPlayer = db.getUserById(aPlayerId);
 				Location location = db.getLocationById(locatinId);
@@ -126,11 +130,11 @@ public class AdminController {
 					}
 					else {
 						Match match = new Match();
-						match.setaPlayerId(aPlayerId);
+						match.setaPlayer(aPlayer);
 						match.setaPlayerPoints(0);
-						match.sethPlayerId(hPlayerId);
+						match.sethPlayer(hPlayer);
 						match.sethPlayerPoints(0);
-						match.setLocationId(locatinId);
+						match.setLocation(location);
 						match.setDate();
 						db.saveMatch(match);
 						model.addAttribute("success", "A mérkőzés sikeresen rögzítve");
