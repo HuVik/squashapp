@@ -71,9 +71,6 @@ public class Match {
 		this.aPlayer = aPlayer;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
 
 	public int gethPlayerPoints() {
         return hPlayerPoints;
@@ -106,9 +103,10 @@ public class Match {
 	}
 
 	public void setDate() {
-		this.date.now();
+		this.date = LocalDate.now();
 	}
 
+	
    
     
 }

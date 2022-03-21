@@ -16,7 +16,10 @@
 				<h2>Üdvözli a Squash applikáció!</h2>
 				<h3>Jelentkezzen be!</h3>
 				<p>Adja meg a felhasználónevét:</p>
-			    <input type="text" name="username" placeholder="Felhasználónév..">
+			    <select   name = "username" >
+					<option th:each="user : ${users}"  th:text=${user.name} />
+				</select>
+				<p th:text=${queryfail}></p>
 			    <br />
 			    <p>Adja meg a jelszavát:</p>
 			    <input type="password" name="userpwd" placeholder="Jelszó...">
@@ -25,6 +28,14 @@
 		  </form>
 		  <p th:text=${denied}></p>
 		  <p th:text=${error}></p>
+		  <p>Keressen rá helyszínekre!</p>
+		  <form action="findlocations" method="post">
+		  		<input type="text" name ="locationinput" placeholder="Helyszín...">
+		  		<input type="submit">
+		  </form>
+		  <p th:text=${foundlocation}></p>
+		  <p th:text=${alert}></p>
+		  <p th:text=${warning}></p>
 		</div>
 
 

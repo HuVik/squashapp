@@ -83,8 +83,14 @@ public class User {
 	public void setPieceOfEntry(int pieceOfEntry) {
 		this.pieceOfEntry = pieceOfEntry;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", pwd=" + pwd + ", role=" + role + ", entered=" + entered
+				+ ", pieceOfEntry=" + pieceOfEntry + "]";
+	}
+	
+	
+	
 	
 }

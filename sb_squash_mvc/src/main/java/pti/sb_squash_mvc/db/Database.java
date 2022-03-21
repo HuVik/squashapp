@@ -42,6 +42,22 @@ public class Database {
         return user;
     }
     
+    public List<User> getAllUser(){
+    	
+    	Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query selectQuery = session.createQuery("SELECT u FROM User u",User.class);
+    	List<User> users = selectQuery.getResultList(); 
+    	
+    	
+    	
+        session.getTransaction().commit();
+        session.close();
+    	
+    	return users;
+    }
+    
     public Location getLocationById(int locationId) {
     	
     	Location location = null;
@@ -191,7 +207,24 @@ public class Database {
     	return password;
     }
 
-    
+    public List<Match> getAllMacthByDate(){
+    	
+    	Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query selectQuery = session.createQuery("SELECT m FROM Match m ORDER BY date DESC",Match.class);
+    	List<Match> matches = selectQuery.getResultList(); 
+    	
+    	
+    	
+        session.getTransaction().commit();
+        session.close();
+    	
+    	
+    	return matches;
+    	
+    	
+    }
 
 
     public void close(){

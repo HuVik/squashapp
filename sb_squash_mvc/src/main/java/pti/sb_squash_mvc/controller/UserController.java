@@ -55,7 +55,7 @@ public class UserController {
 		
 		Database db = new Database();
 		
-		List<Match> matches = db.getAllMatch();
+		List<Match> matches = db.getAllMacthByDate();
 		
 		
 		if(matches != null) {

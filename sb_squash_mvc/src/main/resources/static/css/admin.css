@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+body{
+	background-color: gray;
+	background-image: url("/img/girl.jpg");
+}
+
+img{
+	width: 100%;
+}
+
+
 /*Registration style*/
 #regform{
 	border:1px solid black;
@@ -22,7 +32,7 @@
 input[type=submit]:hover {
 	background-color: #45a049;
 }
-/*Locatin style*/
+/*Location style*/
 #reglocation{
 	margin-top: 30px;
 	border:1px solid black;
@@ -65,4 +75,25 @@ input[type=submit]:hover {
 input[type=submit]:hover {
 	background-color: #45a049;
 }
+
+/*Get all users style*/
+
+#alluser{
+	border:1px solid black;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+	width:30%;
+	margin-top:30px;
+}
+
+#alluser select{
+	width:30%;
+}
+
+#alluser select option{
+	width:100%;
+}
+
+
 
