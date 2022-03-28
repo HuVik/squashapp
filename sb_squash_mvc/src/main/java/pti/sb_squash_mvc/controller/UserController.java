@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,9 +48,8 @@ public class UserController {
 		return "createnewpwd";
 	}
 	
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!
-	@GetMapping("/showmatches")
-	public String showMacthes(Model model) {
+	
+	public static void showMacthes(Model model) {
 		
 		Database db = new Database();
 		
@@ -65,7 +63,7 @@ public class UserController {
 			model.addAttribute("error", "Nem létezik a rendszerben a kívánt mérkőzés!");
 		}
 		
-		return "user";
+		
 	}
 
 }

@@ -19,7 +19,7 @@ import pti.sb_squash_mvc.xmlparser.XmlParser;
 public class AdminController {
 	
 	
-	public void getAllUser(Model model){
+	public static void getAllUser(Model model){
 		
 		Database db = new Database();
 		List<User>users = db.getAllUser();
@@ -31,53 +31,6 @@ public class AdminController {
 		}
 		
 		
-	}
-	
-	
-	@PostMapping("/welcomepage")
-	public String loginByAdmin(Model model, 
-			@RequestParam(name="username") String userName,
-			@RequestParam(name="userpwd") String userPwd) {
-		String targetPage = "";
-		
-		Database db = new Database();
-		
-		if((!userName.isEmpty()) && (!userPwd.isEmpty())) {
-			User user = db.getUserByNameAndPwd(userName,userPwd); 
-			if((user != null)) {
-				if(user.getRole().equals(Roles.ADMIN)) {
-					getAllUser(model);
-					targetPage = "admin";
-					
-				}else {
-					
-					user.setEntered(true);
-					int entryCounter = user.getPieceOfEntry();
-					if(user.isEntered()){
-						user.setPieceOfEntry(entryCounter+1);
-					}else {
-						user.setEntered(false);
-					}
-					db.updateUser(user);
-					
-					if(entryCounter == 2) {
-						targetPage="createnewpwd";
-					}else {
-						targetPage = "user";
-					}
-					
-				}
-				
-			}else {
-				model.addAttribute("denied", "Nem létező felhasználó!");
-				targetPage = "login";
-			}
-		}else {
-			model.addAttribute("error", "A beviteli mezők kitöltése javasolt!");
-			targetPage = "login";
-		}
-		
-		return targetPage;
 	}
 	
 	@PostMapping("/regbyadmin")
@@ -137,6 +90,8 @@ public class AdminController {
 		public String regMatchByAdmin(Model model, 
 				@RequestParam(name ="hplayerid") int hPlayerId,
 				@RequestParam(name ="aplayerid") int aPlayerId,
+				@RequestParam(name = "hplayerpoints") int hPlayerPoints,
+				@RequestParam(name="aplayerpoints") int aPlayerPoints,
 				@RequestParam(name="locationid") int locationId) {
 			
 			Database db = new Database();
@@ -156,10 +111,10 @@ public class AdminController {
 					}
 					else {
 						Match match = new Match();
-						match.setaPlayer(aPlayer);
-						match.setaPlayerPoints(0);
 						match.sethPlayer(hPlayer);
-						match.sethPlayerPoints(0);
+						match.sethPlayerPoints(hPlayerPoints);
+						match.setaPlayer(aPlayer);
+						match.setaPlayerPoints(aPlayerPoints);
 						match.setLocation(location);
 						match.setDate();
 						db.saveMatch(match);

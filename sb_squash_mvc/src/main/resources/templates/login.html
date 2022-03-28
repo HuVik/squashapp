@@ -12,6 +12,7 @@
 		
 		<div id="loginform">
 		<img id="loginicon" alt="login" src="/img/login.png">
+		  
 		  <form action="welcomepage" method="post">
 				<h2>Üdvözli a Squash applikáció!</h2>
 				<h3>Jelentkezzen be!</h3>
@@ -19,23 +20,31 @@
 			    <select   name = "username" >
 					<option th:each="user : ${users}"  th:text=${user.name} />
 				</select>
+				
 				<p th:text=${queryfail}></p>
 			    <br />
+			    
 			    <p>Adja meg a jelszavát:</p>
 			    <input type="password" name="userpwd" placeholder="Jelszó...">
 			    <br />
+			    
 			    <input type="submit">
 		  </form>
+		  
 		  <p th:text=${denied}></p>
 		  <p th:text=${error}></p>
 		  <p>Keressen rá helyszínekre!</p>
+		  
 		  <form action="findlocations" method="post">
 		  		<input type="text" name ="locationinput" placeholder="Helyszín...">
 		  		<input type="submit">
 		  </form>
+		  
+		  <p th:text=${msg}></p>
 		  <p th:text=${foundlocation}></p>
 		  <p th:text=${alert}></p>
 		  <p th:text=${warning}></p>
+		
 		</div>
 
 

@@ -41,13 +41,19 @@
 			<form action = "/regmatchbyadmin" method = "post">
 				<h2>Mérkőzés regisztrálása!</h2>
 				<label>Adja meg a hazai játékos azonosítóját:</label>
-				<input type = "text" name = "hplayerid" placeholder="Hazai játékos....">
+				<input type = "number" name = "hplayerid" placeholder="Hazai játékos....">
+				<br />
+				<label>Adja meg a hazai játékos pontszámát:</label>
+				<input type="number" name = "hplayerpoints" placeholder = "Pontszám...">
 				<br />
 				<label>Adja meg a vendég játékos azonosítóját:</label>
-				<input type = "text" name = "aplayerid" placeholder="Vendég játékos...">
+				<input type = "number" name = "aplayerid" placeholder="Vendég játékos...">
+				<br />
+				<label>Adja meg a vendég játékos pontszámát:</label>
+				<input type="number" name="aplayerpoints" placeholder = "Pontszám...">
 				<br />
 				<label>Adja meg a mérkőzés helyszín azonosítóját:</label>
-				<input type = "text" name = "locationid" placeholder="Helyszín...">
+				<input type = "number" name = "locationid" placeholder="Helyszín...">
 				<br />
 				<input type = "submit">
 				<p th:text=${success}></p>
