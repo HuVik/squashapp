@@ -1,10 +1,7 @@
 package pti.sb_squash_mvc.db;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -176,36 +173,7 @@ public class Database {
     }
     
     
-    public String genPass() {
-    	String password = "";
-    	
-    	Random rand = new Random();
-        String upperCase = "QWERTZUIOPASDFGHJKLYXCVBNM";
-        String lowerCase = "qwertzuiopasdfghjklyxcvbnm";
-        String numbers = "0123456789";
-        String spec = "%-#_$@?[]{}()";
-        String all = upperCase + lowerCase + numbers + spec;
-        ArrayList<Character> letterList = new ArrayList<Character>();
-        
-        for (char c : all.toCharArray()) {
-			letterList.add(c);
-		}
-        
-        int charCounter = 0;
-        while(charCounter <8) {
-        	int randomNumber = rand.nextInt(75)+1;
-        	for (int i = 0; i < letterList.size(); i++) {
-        		if(randomNumber == letterList.get(i)) {
-        			password += letterList.get(i).charValue();
-        			charCounter++;
-        		}
-        		
-    		}
-        	
-        }
-       
-    	return password;
-    }
+    
 
     public List<Match> getAllMacthByDate(){
     	

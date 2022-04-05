@@ -1,7 +1,6 @@
 package pti.sb_squash_mvc.model;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

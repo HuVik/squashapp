@@ -1,8 +1,6 @@
 package pti.sb_squash_mvc.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import org.jdom2.JDOMException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,25 +11,14 @@ import pti.sb_squash_mvc.model.Location;
 import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
+import pti.sb_squash_mvc.service.Services;
 import pti.sb_squash_mvc.xmlparser.XmlParser;
 
 @Controller
 public class AdminController {
 	
 	
-	public static void getAllUser(Model model){
-		
-		Database db = new Database();
-		List<User>users = db.getAllUser();
-		
-		if(users != null) {
-			model.addAttribute("users", users);
-		}else {
-			model.addAttribute("queryfail", "Nincsenek felhasználók az adatbázisban!");
-		}
-		
-		
-	}
+	
 	
 	@PostMapping("/regbyadmin")
 	public String regByAdmin(Model model, 
@@ -39,13 +26,13 @@ public class AdminController {
 			@RequestParam(name="role") String role) {
 		
 		Database db = new Database();
-		String genPass = db.genPass();
+		String genPass = Services.genPass();
 		User user = new User();
 		user.setName(userName);
 		user.setPwd(genPass);
 		if(role.equals("ADMIN")) {
 			user.setRole(Roles.ADMIN);
-			getAllUser(model);
+			Services.getAllUser(model);
 		}else {
 			user.setRole(Roles.PLAYER);
 			model.addAttribute("success", "A felhasználó sikeresen regisztrálva!");
@@ -82,7 +69,7 @@ public class AdminController {
 				}else {
 					model.addAttribute("fail", "A mezők kitöltése szükséges az adatrögzítéshez!");
 				}
-				getAllUser(model);
+				Services.getAllUser(model);
 			return "admin";
 		}
 		
@@ -126,7 +113,7 @@ public class AdminController {
 				model.addAttribute("warning", "Mezők kitöltése kötelező!");
 			}
 			
-			getAllUser(model);
+			Services.getAllUser(model);
 			return "admin";
 		}
 		

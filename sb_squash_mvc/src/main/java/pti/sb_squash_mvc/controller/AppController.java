@@ -10,14 +10,17 @@ import pti.sb_squash_mvc.db.Database;
 import pti.sb_squash_mvc.model.Location;
 import pti.sb_squash_mvc.model.Roles;
 import pti.sb_squash_mvc.model.User;
+import pti.sb_squash_mvc.service.Services;
+
 
 @Controller
 public class AppController {
 	
+	
 	@GetMapping("/")
 	public String login(Model model) {
 		
-		AdminController.getAllUser(model);
+		Services.getAllUser(model);
 		return "login";
 	}
 	
@@ -38,7 +41,7 @@ public class AppController {
 			model.addAttribute("warning", "A kereséshez töltse ki a mezőt!");
 		}
 		
-		AdminController.getAllUser(model);
+		Services.getAllUser(model);
 		return "login";
 	}
 	
@@ -55,7 +58,7 @@ public class AppController {
 			User user = db.getUserByNameAndPwd(userName,userPwd); 
 			if((user != null)) {
 				if(user.getRole().equals(Roles.ADMIN)) {
-					AdminController.getAllUser(model);
+					Services.getAllUser(model);
 					targetPage = "admin";
 					
 				}else {
@@ -68,7 +71,7 @@ public class AppController {
 						user.setEntered(false);
 					}
 					db.updateUser(user);
-					UserController.showMacthes(model);
+					Services.showMacthes(model);
 					
 					if(entryCounter == 2) {
 						targetPage="createnewpwd";

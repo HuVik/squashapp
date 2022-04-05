@@ -1,15 +1,9 @@
 package pti.sb_squash_mvc.controller;
-
-
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import pti.sb_squash_mvc.db.Database;
-import pti.sb_squash_mvc.model.Match;
 import pti.sb_squash_mvc.model.User;
 
 @Controller
@@ -49,21 +43,6 @@ public class UserController {
 	}
 	
 	
-	public static void showMacthes(Model model) {
-		
-		Database db = new Database();
-		
-		List<Match> matches = db.getAllMacthByDate();
-		
-		
-		if(matches != null) {
-			
-			model.addAttribute("matches", matches);
-		}else {
-			model.addAttribute("error", "Nem létezik a rendszerben a kívánt mérkőzés!");
-		}
-		
-		
-	}
+	
 
 }
