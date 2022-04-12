@@ -8,6 +8,10 @@
 <body>
 	<h1>Köszöntjük a játékost!</h1>
 	
+	<p>Szia </p>
+	<p th:text="${username}"></p>
+	
+	
 	<div id="datatable" >
 		<table>
 			<tr>
@@ -31,6 +35,12 @@
 		
 		</table>
 	
+	</div>
+	
+	<div>
+		<form action="/cancel" method="post">
+			<button>Kilépés</button>
+		</form>
 	</div>
 
 </body>

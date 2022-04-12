@@ -15,7 +15,8 @@ public class UserController {
 			@RequestParam(name = "oldpwd") String oldPwd,
 			@RequestParam(name="userspassword") String usersPwd,
 			@RequestParam(name="newuserspassword") String newUsersPwd) {
-		
+			
+		String targetPage = "";
 			Database db = new Database();
 			
 			if((!userName.isEmpty()) && (!oldPwd.isEmpty()) && (!usersPwd.isEmpty()) && (!newUsersPwd.isEmpty())) {
@@ -26,20 +27,23 @@ public class UserController {
 						user.setPwd(newUsersPwd);
 						db.updateUser(user);
 						model.addAttribute("success", "A jelszó sikeresen módosítva!");
+						targetPage = "user";
+						
 					}else {
 						//password is exists
+						targetPage = "createnewpwd";
 						model.addAttribute("warning", "Az új jelszó nem egyezhet meg a régivel!");
 					}
 				}else {
 					model.addAttribute("nofound", "A megadott felhasználó nem létezik a rendszerben!");
-					
+					targetPage = "createnewpwd";
 				}
 			}else {
 				model.addAttribute("error", "Mezők kitöltése kötelező!");
 			}
 			
 		
-		return "createnewpwd";
+		return targetPage;
 	}
 	
 	

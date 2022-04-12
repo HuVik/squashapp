@@ -1,5 +1,7 @@
 package pti.sb_squash_mvc.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,9 @@ public class AppController {
 	@GetMapping("/")
 	public String login(Model model) {
 		
+		
 		Services.getAllUser(model);
+		
 		return "login";
 	}
 	
@@ -52,35 +56,41 @@ public class AppController {
 		String targetPage = "";
 		
 		Database db = new Database();
-		
+		Services.getAllUser(model);
 		
 		if((!userName.isEmpty()) && (!userPwd.isEmpty())) {
 			User user = db.getUserByNameAndPwd(userName,userPwd); 
 			if((user != null)) {
 				if(user.getRole().equals(Roles.ADMIN)) {
-					Services.getAllUser(model);
 					targetPage = "admin";
-					
+					user.setEntered(true);
 				}else {
 					
 					user.setEntered(true);
 					int entryCounter = user.getPieceOfEntry();
-					if(user.isEntered()){
+					
+					if((user.isEntered()) && (user.getRole().equals(Roles.PLAYER))){
 						user.setPieceOfEntry(entryCounter+1);
-					}else {
-						user.setEntered(false);
 					}
-					db.updateUser(user);
-					Services.showMacthes(model);
 					
 					if(entryCounter == 2) {
 						targetPage="createnewpwd";
 					}else {
 						
+						model.addAttribute("username", user.getName());
+						Services.showMacthes(model);
 						targetPage = "user";
+						
 					}
 					
+					if(((user.getRole().equals(Roles.ADMIN)) && (!user.isEntered())) 
+							|| ((user.getRole().equals(Roles.PLAYER)) && (!user.isEntered()))) {
+						user.setEntered(false);
+					}
+					db.updateUser(user);
+					
 				}
+				
 				
 			}else {
 				model.addAttribute("denied", "Nem létező felhasználó!");
@@ -91,6 +101,7 @@ public class AppController {
 			targetPage = "login";
 		}
 		
+		Services.getAllUser(model);
 		return targetPage;
 	}
 	
@@ -108,6 +119,23 @@ public class AppController {
 	@GetMapping("/showeverything")
 	public String showUsers() {
 		return "user";
+	}
+	
+	
+	@PostMapping("/cancel")
+	public String cancel(Model model) {
+		Database db = new Database();
+		
+		List<User> users = db.getAllUser();
+		for (int i = 0; i < users.size(); i++) {
+			User currentUser = users.get(i);
+			if((currentUser.isEntered()) && (currentUser.getRole().equals(Roles.PLAYER)) || (currentUser.isEntered()) && (currentUser.getRole().equals(Roles.ADMIN))) {
+				currentUser.setEntered(false);
+				db.updateUser(currentUser);
+			}
+		}
+		Services.getAllUser(model);
+		return "login";
 	}
 	
 }
